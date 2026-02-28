@@ -1,6 +1,9 @@
-from fastapi import FastAPI # type: ignore
+from fastapi import FastAPI, Depends # type: ignore
+from sqlalchemy.orm import Session 
 
 from app.schemas.user import UserCreate, UserOut
+from app.api.deps import get_db
+
 
 
 app = FastAPI(title="Test API", version="0.1.0")
@@ -21,3 +24,7 @@ def debug_user(user: UserCreate):
 def test_user():
     return { "id": 1, "email": "test@example.com", "full_name": "Test User", "debug": "x" }
 
+@app.get("/test-db")
+def test_db(db: Session = Depends(get_db)):
+    print("DB session type:", type(db))
+    return {"session type": str(type(db))}

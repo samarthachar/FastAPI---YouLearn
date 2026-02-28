@@ -1,4 +1,6 @@
-from pydantic import BaseModel, EmailStr, Field # type: ignore
+from datetime import datetime
+
+from pydantic import BaseModel, EmailStr, Field # type: ignore 
 
 class UserCreate(BaseModel):
     email: EmailStr
@@ -9,6 +11,9 @@ class UserOut(BaseModel):
     id: int
     email: EmailStr
     full_name: str
+    is_active: bool
+
+    created_at: datetime
     
     class Config:
         from_attributes = True
