@@ -1,0 +1,43 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+
+# --- Virtual environment ---
+.venv/
+venv/
+env/
+
+# --- Environment variables ---
+.env
+*.env
+
+# --- SQLite or local DB files ---
+*.db
+*.sqlite3
+
+# --- Alembic ---
+alembic/__pycache__/
+alembic/versions/__pycache__/
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+
+# --- Testing ---
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Logs ---
+*.log
+logs/
+
+
+*.pdf
