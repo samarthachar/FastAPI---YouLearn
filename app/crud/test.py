@@ -26,3 +26,21 @@ def update(db: Session, db_obj: Test, obj_in: TestUpdate) -> Test:
     db.commit()
     db.refresh(db_obj)
     return db_obj
+
+def delete(db: Session, test: Test):
+    db.delete(test)
+    db.commit()
+    return
+
+def list_tests(db: Session, skip: int, limit: int, q: str | None, sort: str):
+    query = db.query(Test)
+
+    if q:
+        query = query.filter(Test.title.ilike(f"%{q}%"))
+
+    if sort == "asc":
+        query = query.order_by(Test.created_at.asc())
+    else:
+        query = query.order_by(Test.created_at.desc())
+
+    return query.offset(skip).limit(limit).all()
